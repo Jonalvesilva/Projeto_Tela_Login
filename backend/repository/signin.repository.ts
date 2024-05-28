@@ -1,15 +1,28 @@
 import { Service } from "typedi";
 import { Login, User, UserMaybeOutput } from "../types/types";
+import { UserModel } from "../models/users";
 
 @Service()
 export class SignInRepository implements Login<User> {
-  findByEmailPassword(email: string, senha: string): Promise<User | null> {
-    return { nome: "teste" } as any;
+  async findByEmailPassword(
+    email: string,
+    senha: string
+  ): Promise<User | null> {
+    const user = await UserModel.findOne({ email, senha }).lean();
+    return user;
   }
-  findByEmail(email: string): Promise<User | null> {
-    return { nome: "teste" } as any;
+  async findByEmail(email: string) {
+    const user = await UserModel.findOne({ email }).lean();
+    return user;
   }
-  add(data: Omit<User, string>): Promise<UserMaybeOutput<User>> {
-    throw new Error("Method not implemented.");
+  async add(data: User): Promise<UserMaybeOutput<User>> {
+    let user;
+    try {
+      user = (await UserModel.create(data)).toJSON();
+    } catch (error: any) {
+      return { success: false, data: null, error: error };
+    }
+
+    return { success: true, data: user };
   }
 }

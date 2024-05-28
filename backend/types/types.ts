@@ -12,6 +12,7 @@ export type User = {
 export type UserMaybeOutput<Entity> = {
   success: boolean;
   data: Entity | null;
+  error?: string;
 };
 
 //Interface Repository Funcionario
