@@ -26,6 +26,9 @@ export const userSchema = new Schema<IUser>({
     required: true,
     type: Schema.Types.String,
     unique: true,
+    lowercase: true,
+    trim: true,
+    match: [/^\S+@\S+\.\S+$/, "Por favor, insira um endereço de e-mail válido"],
   },
 
   senha: {
@@ -34,37 +37,4 @@ export const userSchema = new Schema<IUser>({
   },
 });
 
-// Antes de salvar, criptografa a senha
-userSchema.pre("save", async function (next) {
-  try {
-    if (!this.isModified("password")) {
-      return next();
-    }
-    // Verifica se a senha é forte o suficiente antes de criptografar
-    const isStrongEnough =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(
-        this.senha!
-      );
-    if (!isStrongEnough) {
-      throw new Error(
-        "A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais."
-      );
-    }
-    const hashedPassword = await bcrypt.hash(this.senha!, 10);
-    this.senha! = hashedPassword;
-    next();
-  } catch (error: any) {
-    next(error);
-  }
-});
-
-// Método para comparar senhas
-userSchema.methods.comparePassword = async function (candidatePassword: any) {
-  try {
-    return await bcrypt.compare(candidatePassword, this.senha);
-  } catch (error: any) {
-    throw new Error(error);
-  }
-};
-
-export const User = model<IUser>("User", userSchema);
+export const UserModel = model<IUser>("User", userSchema);
