@@ -14,13 +14,13 @@ import { encryptPasswordMiddleware } from "../middlewares/passwordEncrypt";
 export class SignInController {
   constructor(private readonly signinService: SignInService) {}
 
-  @Get()
+  @Post("signin")
   async Login(@Body() body: any) {
     const response = await this.signinService.Login(body.email, body.senha);
     return response;
   }
 
-  @Post("/")
+  @Post("signup")
   @UseBefore(encryptPasswordMiddleware)
   async Add(@Body() body: any) {
     const response = await this.signinService.Add(body);

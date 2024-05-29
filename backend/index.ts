@@ -19,4 +19,4 @@ app.use(bodyParser.json());
 
 mongoose.connect(process.env.DB_CONNECTION as string);
 
-app.listen(3000, () => console.log("Servidor Rodando"));
+app.listen(8080, () => console.log("Servidor Rodando"));
