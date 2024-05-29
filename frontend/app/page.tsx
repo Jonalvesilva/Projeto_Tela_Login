@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="bg-gray-100 flex justify-center items-center h-screen">
+    <div className="bg-gray-50 flex justify-center items-center h-screen">
       <div className="w-1/2 h-screen hidden lg:block">
         <img
-          src="https://placehold.co/800x/667fff/ffffff.png?text=Your+Image&font=Montserrat"
+          src="/login.jpg"
           alt="Placeholder Image"
           className="object-cover w-full h-full"
         />
@@ -34,22 +34,6 @@ export default function Home() {
             />
           </div>
 
-          <div className="mb-4 flex items-center">
-            <input
-              type="checkbox"
-              id="remember"
-              name="remember"
-              className="text-blue-500"
-            />
-            <label className="text-gray-600 ml-2">Remember Me</label>
-          </div>
-
-          <div className="mb-6 text-blue-500">
-            <a href="#" className="hover:underline">
-              Forgot Password?
-            </a>
-          </div>
-
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
@@ -60,7 +44,7 @@ export default function Home() {
 
         <div className="mt-6 text-blue-500 text-center">
           <a href="#" className="hover:underline">
-            Sign up Here
+            Cadastre-se
           </a>
         </div>
       </div>
