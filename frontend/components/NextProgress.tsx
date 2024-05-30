@@ -15,15 +15,13 @@ export default function NextProgress() {
 
   return (
     <section
-      className={`flex items-center justify-center bg-slate-900 fixed z-10 w-full h-full ${
-        loading ? "block" : "hidden"
-      }`}
+      className={`flex items-center justify-center fixed top-0 left-0 w-full h-full bg-black transition-opacity duration-2000 ease-in-out ${
+        loading ? "opacity-100" : "opacity-0"
+      } ${loading ? "" : "pointer-events-none"}`}
     >
-      <div className="relative">
-        <img src="teste.gif" alt="Loading..." className="w-[200px]" />
-        <p className="text-2xl text-center animate-pulse text-white mt-4">
-          Carregando...
-        </p>
+      <div className="flex flex-col items-center">
+        <img src="teste.gif" alt="Loading..." className="w-20" />
+        <p className="text-2xl text-white mt-4">Carregando...</p>
       </div>
     </section>
   );
