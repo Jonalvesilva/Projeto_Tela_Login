@@ -2,17 +2,40 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { api } from "@/api/api";
+import { useState } from "react";
+import { ImSpinner2 } from "react-icons/im";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { success, error } from "@/functions/toast";
 
 type Login = {
   email: string;
   senha: string;
 };
 
+const loginSchema = z.object({
+  email: z.string().email({ message: "Email Inválido" }),
+  senha: z.string(),
+});
+
 export default function Home() {
-  const { register, handleSubmit } = useForm<Login>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Login>({ resolver: zodResolver(loginSchema) });
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (data: any) => {
+    setLoading(true);
     const response = await api.post("signin", data);
-    console.log(response.data, data);
+    if (response.data.success) {
+      success("Login Realizado com Sucesso.");
+      setLoading(false);
+    } else {
+      error(response.data.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,6 +60,9 @@ export default function Home() {
               name="email"
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             />
+            {errors.email && (
+              <span className="text-red-500">{`${errors.email.message}`}</span>
+            )}
           </div>
 
           <div className="mb-4">
@@ -48,13 +74,23 @@ export default function Home() {
               name="senha"
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             />
+            {errors.senha && (
+              <span className="text-red-500">{`${errors.senha.message}`}</span>
+            )}
           </div>
 
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+            className={`bg-blue-500 hover:bg-blue-600 text-white flex justify-center font-semibold rounded-md py-2 px-4 w-full ${
+              loading ? "cursor-not-allowed" : ""
+            }`}
+            disabled={loading}
           >
-            Login
+            {!loading ? (
+              "Login"
+            ) : (
+              <ImSpinner2 size={20} className="animate-spin" />
+            )}
           </button>
         </form>
 
