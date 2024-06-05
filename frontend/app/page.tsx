@@ -7,6 +7,7 @@ import { ImSpinner2 } from "react-icons/im";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { success, error } from "@/functions/toast";
+import { useRouter } from "next/navigation";
 
 type Login = {
   email: string;
@@ -24,7 +25,9 @@ export default function Home() {
     handleSubmit,
     formState: { errors },
   } = useForm<Login>({ resolver: zodResolver(loginSchema) });
+
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (data: any) => {
     setLoading(true);
@@ -32,6 +35,7 @@ export default function Home() {
     if (response.data.success) {
       success("Login Realizado com Sucesso.");
       setLoading(false);
+      router.push("/home");
     } else {
       error(response.data.message);
       setLoading(false);
