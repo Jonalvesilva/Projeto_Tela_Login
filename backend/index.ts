@@ -10,7 +10,10 @@ dotenv.config();
 useContainer(Container);
 
 const app = createExpressServer({
-  cors: true,
+  cors: {
+    origin: true,
+    credentials: true,
+  },
   controllers: [SignInController], // we specify controllers we want to use
 });
 
