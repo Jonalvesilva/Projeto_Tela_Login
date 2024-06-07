@@ -8,6 +8,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { success, error } from "@/functions/toast";
 import { useRouter } from "next/navigation";
+import AuthVerify from "@/components/AuthVerify";
 
 type Login = {
   email: string;
@@ -44,6 +45,7 @@ export default function Home() {
 
   return (
     <div className="bg-gray-50 flex justify-center items-center h-screen">
+      <AuthVerify />
       <div className="w-1/2 h-screen hidden lg:block">
         <img
           src="/login.jpg"
