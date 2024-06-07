@@ -23,8 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
-        <NextProgress />
-        <Suspense fallback={null}>{children}</Suspense>
+
+        <Suspense fallback={null}>
+          {" "}
+          <NextProgress />
+          {children}
+        </Suspense>
       </body>
     </html>
   );
