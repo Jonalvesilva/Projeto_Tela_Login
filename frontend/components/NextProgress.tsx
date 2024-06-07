@@ -24,16 +24,16 @@ export default function NextProgress() {
   }, [pathname, searchParams]);
 
   return (
-    loading && (
-      <section
-        id="globalLoader"
-        className="flex items-center justify-center fixed top-0 left-0 w-full h-full bg-black z-10"
-      >
-        <div className="flex flex-col items-center">
-          <Image src="/teste.gif" alt="Loading..." width={80} height={80} />
-          <p className="text-2xl text-white mt-4">Carregando...</p>
-        </div>
-      </section>
-    )
+    <section
+      id="globalLoader"
+      className={`flex items-center justify-center fixed top-0 left-0 w-full h-full bg-black z-10 ${
+        loading ? "" : "hidden"
+      }`}
+    >
+      <div className="flex flex-col items-center">
+        <Image src="/teste.gif" alt="Loading..." width={80} height={80} />
+        <p className="text-2xl text-white mt-4">Carregando...</p>
+      </div>
+    </section>
   );
 }
