@@ -29,7 +29,10 @@ export class SignInController {
           expiresIn: "1d",
         }
       );
-      res.cookie("token", token);
+      res.cookie("token", token, {
+        domain: "projeto-tela-login-site.vercel.app",
+        path: "/",
+      });
     }
     return response;
   }
@@ -47,7 +50,10 @@ export class SignInController {
           expiresIn: "1d",
         }
       );
-      res.cookie("token", token);
+      res.cookie("token", token, {
+        domain: "projeto-tela-login-site.vercel.app",
+        path: "/",
+      });
     }
     return response;
   }
