@@ -20,6 +20,6 @@ const app = createExpressServer({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.DB_CONNECTION as string);
+mongoose.connect(process.env.VERCEL_DB_CONNECTION as string);
 
 app.listen(8080, () => console.log("Servidor Rodando"));
