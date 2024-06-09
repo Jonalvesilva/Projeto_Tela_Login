@@ -25,7 +25,7 @@ export class SignInController {
       const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
-      res.cookie("token", token);
+      res.cookie("token", token, { path: "/" });
     }
     return response;
   }
@@ -39,7 +39,7 @@ export class SignInController {
       const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
-      res.cookie("token", token);
+      res.cookie("token", token, { path: "/" });
     }
     return response;
   }
