@@ -25,7 +25,10 @@ export class SignInController {
       const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
-      res.cookie("token", token, { domain: ".vercel.app", path: "/" });
+      res.cookie("token", token, {
+        domain: "projeto-tela-login-site.vercel.app",
+        path: "/",
+      });
     }
     return response;
   }
@@ -39,7 +42,10 @@ export class SignInController {
       const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
-      res.cookie("token", token, { domain: ".vercel.app", path: "/" });
+      res.cookie("token", token, {
+        domain: "projeto-tela-login-site.vercel.app",
+        path: "/",
+      });
     }
     return response;
   }
