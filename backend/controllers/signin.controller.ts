@@ -25,12 +25,7 @@ export class SignInController {
       const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
-      res.cookie("token", token, {
-        secure: true,
-        httpOnly: true,
-        sameSite: "None",
-        path: "/",
-      });
+      res.cookie("token", token);
     }
     return response;
   }
@@ -44,12 +39,7 @@ export class SignInController {
       const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
-      res.cookie("token", token, {
-        secure: true,
-        httpOnly: true,
-        sameSite: "None",
-        path: "/",
-      });
+      res.cookie("token", token);
     }
     return response;
   }
