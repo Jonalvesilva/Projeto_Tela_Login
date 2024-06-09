@@ -26,6 +26,7 @@ export class SignInController {
         expiresIn: "1d",
       });
       res.cookie("token", token);
+      res.header.SetCookie(token);
     }
     return response;
   }
@@ -40,6 +41,7 @@ export class SignInController {
         expiresIn: "1d",
       });
       res.cookie("token", token);
+      res.header.SetCookie(token);
     }
     return response;
   }
