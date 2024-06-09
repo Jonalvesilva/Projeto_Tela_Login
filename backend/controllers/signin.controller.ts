@@ -29,7 +29,7 @@ export class SignInController {
       });
       res.setHeader(
         "Set-Cookie",
-        `token=${token}; Path=/; HttpOnly; Max-Age=3600; SameSite=None`
+        `token=${token}; Path=/; HttpOnly; Max-Age=3600; SameSite=None; Secure=true`
       );
     }
     return res.status(200).json(response);
