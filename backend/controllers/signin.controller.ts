@@ -21,21 +21,18 @@ export class SignInController {
   async Login(@Body() body: any, @Res() res: any) {
     const response = await this.signinService.Login(body.email, body.senha);
     const email = body.email;
+    let token;
+
     if (response.success) {
-      const token = jwt.sign(
-        { email },
-        process.env.VERCEL_JWT_SECRET as string,
-        {
-          expiresIn: "1d",
-        }
-      );
-      res.cookie("token", token, {
-        domain: "projeto-tela-login-site.vercel.app",
-        path: "/",
-        httpOnly: true,
+      token = jwt.sign({ email }, process.env.VERCEL_JWT_SECRET as string, {
+        expiresIn: "1d",
       });
+      res.setHeader(
+        "Set-Cookie",
+        `token=${token}; Path=/; HttpOnly; Max-Age=3600; SameSite=Strict`
+      );
     }
-    return response;
+    return res.status(200).json(response);
   }
 
   @Post("signup")
