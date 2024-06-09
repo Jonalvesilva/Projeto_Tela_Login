@@ -41,6 +41,6 @@ export class SignInController {
       });
       res.cookie("token", token);
     }
-    return res.json(response);
+    return response;
   }
 }
