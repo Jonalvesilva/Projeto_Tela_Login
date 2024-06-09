@@ -21,16 +21,13 @@ export class SignInController {
   async Login(@Body() body: any, @Res() res: any) {
     const response = await this.signinService.Login(body.email, body.senha);
     const email = body.email;
-    let token = "";
-
     if (response.success) {
-      token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
+      const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
         expiresIn: "1d",
       });
+      res.cookie("token", token);
     }
-    return res
-      .setHeaders("Set-Cookie", `token=${token}; Path=/; HttpOnly`)
-      .json(response);
+    return res.json(response);
   }
 
   @Post("signup")
@@ -44,6 +41,6 @@ export class SignInController {
       });
       res.cookie("token", token);
     }
-    return response;
+    return res.json(response);
   }
 }
