@@ -35,6 +35,7 @@ export default function Home() {
     const response = await api.post("signin", data);
     if (response.data.success) {
       success("Login Realizado com Sucesso.");
+      console.log(response);
       setLoading(false);
       router.push("/home");
     } else {

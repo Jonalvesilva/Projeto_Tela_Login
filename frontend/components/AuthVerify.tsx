@@ -10,6 +10,7 @@ export default function AuthVerify() {
   useEffect(() => {
     const cookies = parseCookies();
     const token = cookies.token;
+    console.log(cookies, token);
     if (!token) {
       if (path == "/signup") {
         router.push("/signup");
