@@ -31,10 +31,7 @@ export class SignInController {
         }
       );
 
-      res.cookie("token", token, {
-        sameSite: "none",
-        secure: false,
-      });
+      res.cookie("token", token);
     }
     return response;
   }
