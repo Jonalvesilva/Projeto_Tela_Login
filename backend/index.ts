@@ -13,7 +13,7 @@ useContainer(Container);
 
 const app = createExpressServer({
   cors: {
-    origin: ["*"],
+    origin: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Métodos permitidos
     allowedHeaders: "Content-Type,Authorization", // Cabeçalhos permitidos
     exposedHeaders: ["Content-Length", "X-Foo"], // Cabeçalhos expostos
