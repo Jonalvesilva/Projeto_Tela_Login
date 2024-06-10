@@ -33,7 +33,7 @@ export class SignInController {
 
       res.cookie("token", token, {
         sameSite: "none",
-        secure: true,
+        secure: false,
       });
     }
     return response;
