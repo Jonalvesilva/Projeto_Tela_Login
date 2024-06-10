@@ -11,7 +11,7 @@ useContainer(Container);
 
 const app = createExpressServer({
   cors: {
-    origin: "*",
+    origin: "projeto-tela-login-site.vercel.app",
     credentials: true,
   },
   controllers: [SignInController], // we specify controllers we want to use
