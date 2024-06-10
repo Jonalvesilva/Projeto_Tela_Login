@@ -30,7 +30,7 @@ export class SignInController {
           expiresIn: "1d",
         }
       );
-      res.cookie("token", token);
+      res.setCookie("token", token);
     }
     return response;
   }
