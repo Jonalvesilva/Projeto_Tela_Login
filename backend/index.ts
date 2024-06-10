@@ -13,8 +13,13 @@ useContainer(Container);
 
 const app = createExpressServer({
   cors: {
-    origin: true,
-    credentials: true,
+    origin: ["*"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Métodos permitidos
+    allowedHeaders: "Content-Type,Authorization", // Cabeçalhos permitidos
+    exposedHeaders: ["Content-Length", "X-Foo"], // Cabeçalhos expostos
+    credentials: true, // Permitir credenciais
+    maxAge: 3600, // Tempo de cache da preflight request em segundos
+    preflightContinue: false, // Responder automaticamente às solicitações de preflight
   },
   controllers: [SignInController], // we specify controllers we want to use
 });
