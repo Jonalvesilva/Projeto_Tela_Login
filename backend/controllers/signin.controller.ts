@@ -30,7 +30,7 @@ export class SignInController {
           expiresIn: "1d",
         }
       );
-      res.setHeader("Access-Control-Allow-Origin", true);
+      res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Credentials", true);
       res.cookie("token", token);
     }
