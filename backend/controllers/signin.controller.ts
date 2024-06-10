@@ -30,7 +30,9 @@ export class SignInController {
           expiresIn: "1d",
         }
       );
-      res.cookie("token", token);
+      res.cookie("token", token, {
+        domain: "https://projeto-tela-login-site.vercel.app/",
+      });
     }
     return response;
   }
