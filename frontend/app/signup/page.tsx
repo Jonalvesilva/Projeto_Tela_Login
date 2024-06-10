@@ -9,6 +9,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { success, error } from "@/functions/toast";
 import { useRouter } from "next/navigation";
+import { setCookie } from "nookies";
 
 type Cadastro = {
   nome: string;
@@ -55,6 +56,7 @@ export default function Signup() {
     const response = await api.post("signup", data);
     if (response.data.success) {
       success("Cadastro Realizado com Sucesso.");
+      setCookie(null, "token", response.data.token);
       setLoading(false);
       router.push("/home");
     } else {
