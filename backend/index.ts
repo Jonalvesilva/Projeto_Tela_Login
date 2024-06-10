@@ -5,6 +5,8 @@ import Container from "typedi";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bodyParser = require("body-parser");
+import cookieParser = require("cookie-parser");
+
 dotenv.config();
 
 useContainer(Container);
@@ -19,6 +21,7 @@ const app = createExpressServer({
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 mongoose.connect(process.env.VERCEL_DB_CONNECTION as string);
 
