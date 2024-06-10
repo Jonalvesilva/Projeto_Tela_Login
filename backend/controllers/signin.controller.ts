@@ -21,11 +21,16 @@ export class SignInController {
   async Login(@Body() body: any, @Res() res: any) {
     const response = await this.signinService.Login(body.email, body.senha);
     const email = body.email;
+
     if (response.success) {
-      const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
-        expiresIn: "1d",
-      });
-      res.cookie("token", token, { sameSite: "none", secure: false });
+      const token = jwt.sign(
+        { email },
+        process.env.VERCEL_JWT_SECRET as string,
+        {
+          expiresIn: "1d",
+        }
+      );
+      res.cookie("token", token);
     }
     return response;
   }
@@ -36,10 +41,14 @@ export class SignInController {
     const response = await this.signinService.Add(body);
     const email = body.email;
     if (response.success) {
-      const token = jwt.sign({ email }, process.env.JWT_SECRET as string, {
-        expiresIn: "1d",
-      });
-      res.cookie("token", token, { sameSite: "none", secure: false });
+      const token = jwt.sign(
+        { email },
+        process.env.VERCEL_JWT_SECRET as string,
+        {
+          expiresIn: "1d",
+        }
+      );
+      res.cookie("token", token);
     }
     return response;
   }
