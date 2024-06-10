@@ -36,16 +36,12 @@ export class SignInController {
   async Add(@Body() body: any, @Res() res: any) {
     const response = await this.signinService.Add(body);
     const email = body.email;
+    let token;
     if (response.success) {
-      const token = jwt.sign(
-        { email },
-        process.env.VERCEL_JWT_SECRET as string,
-        {
-          expiresIn: "1d",
-        }
-      );
-      res.cookie("token", token);
+      token = jwt.sign({ email }, process.env.VERCEL_JWT_SECRET as string, {
+        expiresIn: "1d",
+      });
     }
-    return response;
+    return { ...response, token };
   }
 }
