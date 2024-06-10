@@ -32,7 +32,7 @@ export class SignInController {
       );
 
       res.cookie("token", token, {
-        domain: "vercel.app",
+        domain: "projeto-tela-login-site.vercel.app",
         sameSite: "none",
         secure: true,
       });
