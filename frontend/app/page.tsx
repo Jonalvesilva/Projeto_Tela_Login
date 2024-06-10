@@ -8,6 +8,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { success, error } from "@/functions/toast";
 import { useRouter } from "next/navigation";
+import { setCookie } from "nookies";
 import AuthVerify from "@/components/AuthVerify";
 
 type Login = {
@@ -36,6 +37,7 @@ export default function Home() {
     if (response.data.success) {
       success("Login Realizado com Sucesso.");
       console.log(response);
+      setCookie(null, "token", response.data.token);
       setLoading(false);
       router.push("/home");
     } else {
