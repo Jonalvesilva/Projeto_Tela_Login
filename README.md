@@ -45,7 +45,7 @@
   <tr>
     <td><img src="https://drive.google.com/uc?export=view&id=1cTFVX2s67B9Rqe3lxbOLQdNusfLTF8Tl" 
           width=500/></td>
-    <td> <img src="https://drive.google.com/uc?export=view&id=1YnamBnG1Ft46C_3Z87VdvI-lLRd4oy7o" 
+    <td> <img src="https://drive.google.com/uc?export=view&id=12sJUAxpAVre2UMiDKby2LZxVHd3_sqYX" 
            width=500/></td>
   </tr>
 </table>
